@@ -19,17 +19,25 @@ function differenceMaxMinWorker(...arr) {
 }
 
 function differenceEvenOddWorker(...arr) {
+  if (![...arr].length) {
+    return 0;
+  }
+
   const sumEven = [...arr].reduce((a, b) => a + (b % 2 === 0 && b), 0);
   const sumOdd = [...arr].reduce((a, b) => a + (b % 2 !== 0 && b), 0);
 
-  return [...arr].length ? sumEven - sumOdd : 0;
+  return sumEven - sumOdd;
 }
 
 function averageEvenElementsWorker(...arr) {
+  if (![...arr].length) {
+    return 0;
+  }
+
   const arrEven = [...arr].filter((el) => el % 2 === 0);
   const sumEven = arrEven.reduce((a, b) => a + b, 0);
 
-  return [...arr].length ? +(sumEven / arrEven.length).toFixed(2) : 0;
+  return +(sumEven / arrEven.length).toFixed(2);
 }
 
 function makeWork(arrOfArr, func) {
