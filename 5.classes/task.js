@@ -84,3 +84,39 @@ class Library {
     return bookIndex !== -1 ? this.books.splice(bookIndex, 1)[0] : null;
   }
 }
+
+// task 3
+
+class Student {
+  constructor(name) {
+    this.name = name;
+    this.marks = {};
+  }
+
+  addMark(mark, subjectName) {
+    if (mark < 2 || mark > 5) {
+      return;
+    }
+
+    if (!this.marks[subjectName]) {
+      this.marks[subjectName] = [];
+    }
+
+    this.marks[subjectName].push(mark);
+  }
+
+  getAverageBySubject(subjectName) {
+    const arrMark = this.marks[subjectName];
+
+    return arrMark ? arrMark.reduce((a, b) => a + b) / arrMark.length : 0;
+  }
+
+  getAverage() {
+    const arrSubjects = Object.keys(this.marks);
+
+    return arrSubjects.length
+      ? arrSubjects.reduce((acc, el) => acc + this.getAverageBySubject(el), 0) /
+          arrSubjects.length
+      : 0;
+  }
+}
