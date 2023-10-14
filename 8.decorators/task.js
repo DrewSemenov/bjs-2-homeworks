@@ -8,11 +8,15 @@ function cachingDecoratorNew(func) {
     const searchInCache = cache.find((el) => el[hash]);
 
     if (searchInCache) {
-      return `Из кеша: ${searchInCache.result}`;
+      return `Из кеша: ${searchInCache[hash]}`;
     } else {
       const result = func(...args);
-      cache.push({ [hash]: hash, result });
-      cache = cache.splice(-5);
+      cache.push({ [hash]: result });
+
+      if (cache.length > 5) {
+        cache = cache.splice(-5);
+      }
+
       return `Вычисляем: ${result}`;
     }
   };
