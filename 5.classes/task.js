@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 //task 1
 
@@ -34,32 +34,32 @@ class PrintEditionItem {
 class Magazine extends PrintEditionItem {
   constructor(name, releaseDate, pagesCount) {
     super(name, releaseDate, pagesCount);
-    this.type = "magazine";
+    this.type = 'magazine';
   }
 }
 class Book extends PrintEditionItem {
   constructor(author, name, releaseDate, pagesCount) {
     super(name, releaseDate, pagesCount);
     this.author = author;
-    this.type = "book";
+    this.type = 'book';
   }
 }
 class NovelBook extends Book {
   constructor(author, name, releaseDate, pagesCount) {
     super(author, name, releaseDate, pagesCount);
-    this.type = "novel";
+    this.type = 'novel';
   }
 }
 class FantasticBook extends Book {
   constructor(author, name, releaseDate, pagesCount) {
     super(author, name, releaseDate, pagesCount);
-    this.type = "fantastic";
+    this.type = 'fantastic';
   }
 }
 class DetectiveBook extends Book {
   constructor(author, name, releaseDate, pagesCount) {
     super(author, name, releaseDate, pagesCount);
-    this.type = "detective";
+    this.type = 'detective';
   }
 }
 
@@ -80,8 +80,15 @@ class Library {
   }
 
   giveBookByName(bookName) {
-    const bookIndex = this.books.findIndex((el) => el.name === bookName);
-    return bookIndex !== -1 ? this.books.splice(bookIndex, 1)[0] : null;
+    const book = this.findBookBy('name', bookName);
+
+    if (!book) {
+      return null;
+    }
+
+    this.books = this.books.filter((el) => el.name !== bookName);
+
+    return book;
   }
 }
 
