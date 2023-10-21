@@ -1,10 +1,10 @@
-﻿"use strict";
+﻿'use strict';
 
 function parseCount(string) {
   const result = Number.parseFloat(string);
 
   if (isNaN(result)) {
-    throw new Error("Невалидное значение");
+    throw new Error('Невалидное значение');
   }
 
   return result;
@@ -21,17 +21,19 @@ function validateCount(string) {
 class Triangle {
   constructor(a, b, c) {
     if (a + b < c || a + c < b || b + c < a) {
-      throw new Error("Треугольник с такими сторонами не существует");
+      throw new Error('Треугольник с такими сторонами не существует');
     }
 
     this.sideA = a;
     this.sideB = b;
     this.sideC = c;
 
-    this._perimeter = a + b + c;
+    this._perimeter = null;
   }
 
   get perimeter() {
+    this._perimeter = this.sideA + this.sideB + this.sideC;
+
     return this._perimeter;
   }
 
@@ -51,7 +53,7 @@ function getTriangle(a, b, c) {
     return new Triangle(a, b, c);
   } catch {
     return {
-      error: "Ошибка! Треугольник не существует",
+      error: 'Ошибка! Треугольник не существует',
 
       get area() {
         return this.error;
